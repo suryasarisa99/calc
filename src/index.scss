@@ -1,0 +1,257 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+}
+
+.tables {
+  display: flex;
+  // justify-content: space-around;
+  align-items: start;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+input {
+  background-color: rgb(36, 36, 36);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.prd {
+  background-color: rgb(57, 57, 57);
+  margin: 20px;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 18px;
+
+  .head {
+    display: flex;
+    gap: 25px;
+    font-weight: 600;
+  }
+  .item {
+    margin: 8px;
+  }
+  .items {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 8px;
+    color: rgb(168, 168, 168);
+  }
+
+  .value {
+    font-size: 19px;
+  }
+
+  .rate {
+    margin-left: 15px;
+    font-size: 12px;
+    background-color: rgb(50, 129, 81);
+    border-radius: 12px;
+    padding: 4px 8px;
+  }
+  .body {
+    display: flex;
+    gap: 50px;
+  }
+
+  input.lvl {
+    width: 32px;
+    padding: 8px 8px;
+    margin-right: 8px;
+  }
+  input.num {
+    width: 100px;
+    padding: 8px 8px;
+  }
+}
+
+.table {
+  .head {
+    display: flex;
+    gap: 2px;
+    justify-content: start;
+    margin-bottom: 3px;
+    .head-item {
+      // flex-shrink: 0;
+      width: 85px;
+      background-color: rgb(128, 60, 0);
+      padding: 10px 0px;
+      text-align: center;
+
+      &.vs {
+        width: 48px;
+      }
+      &.md {
+        width: 60px;
+      }
+    }
+  }
+
+  .body {
+    .row {
+      display: flex;
+      margin-bottom: 2px;
+      justify-content: start;
+      align-items: stretch;
+      gap: 2px;
+
+      &:nth-child(even) {
+        .cell {
+          background-color: rgb(128, 0, 0);
+
+          &.totalRevenu {
+            color: rgb(0, 183, 255);
+            background-color: rgb(4, 41, 69);
+          }
+        }
+      }
+      &:nth-child(odd) {
+        .cell {
+          background-color: rgb(94, 0, 0);
+
+          &.totalRevenu {
+            color: rgb(0, 183, 255);
+            background-color: rgb(5, 55, 94);
+          }
+        }
+      }
+
+      .cell {
+        // flex-shrink: 0;
+        width: 85px;
+        text-align: center;
+        font-size: 18px;
+        padding: 6px 0;
+
+        &.cost {
+          color: rgb(255, 158, 156);
+          font-weight: 600;
+        }
+
+        &.name {
+          color: rgb(255, 158, 156);
+        }
+        &.startingBonus {
+          color: green;
+          background-color: rgb(0, 62, 0);
+          // order: -2;
+        }
+        &.invitationReward {
+          color: rgb(55, 255, 0);
+          background-color: rgb(26, 130, 26);
+          // order: 1;
+        }
+      }
+    }
+
+    .vs {
+      // background-color: rgb(128, 98, 0) !important;
+      width: 48px !important;
+    }
+    .md {
+      width: 60px !important;
+    }
+  }
+}
+
+.table.vip {
+  .head .head-item {
+    background-color: rgb(0, 132, 255);
+  }
+  .row {
+    &:nth-child(even) {
+      .cell {
+        background-color: rgb(15, 157, 223);
+      }
+    }
+    &:nth-child(odd) {
+      .cell {
+        background-color: rgb(14, 116, 180);
+      }
+    }
+  }
+}
+
+.table.bonus {
+  .head .head-item {
+    background-color: rgb(95, 149, 61);
+    // color: black;
+  }
+  .row {
+    &:nth-child(even) {
+      .cell {
+        background-color: rgb(9, 139, 24);
+      }
+    }
+    &:nth-child(odd) {
+      .cell {
+        background-color: rgb(1, 108, 11);
+      }
+    }
+  }
+}
+
+.calc {
+  background-color: rgb(20, 103, 170);
+  padding: 8px;
+  border-radius: 8px;
+
+  .field {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 2px;
+    span {
+      font-size: 14px;
+    }
+
+    input {
+      padding: 4px 6px;
+      width: 120px;
+    }
+    .small {
+      width: 80px;
+    }
+  }
+
+  .result {
+    margin-top: 8px;
+    background-color: rgb(14, 53, 106);
+    padding: 8px;
+    border-radius: 4px;
+  }
+  p {
+    &:first-child {
+      margin-bottom: 8px;
+    }
+    font-size: 14px;
+    .text {
+      margin-right: 8px;
+      color: rgb(119, 173, 248);
+    }
+    .value {
+      background-color: rgb(20, 103, 170);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  }
+}
