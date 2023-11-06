@@ -13,7 +13,7 @@ export default function Calc() {
           type="number"
           className="small"
           value={p}
-          onChange={(e) => setP(+e.target.value.at(-1) || "")}
+          onChange={(e) => setP(+e.target.value.at(-1) || 1)}
         />
       </div>
       <div className="field">
