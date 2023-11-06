@@ -26,7 +26,7 @@ export default function Calc() {
       </div>
 
       <div className="field">
-        <span>B</span>
+        <span>C</span>
         <input
           type="number"
           value={b}
@@ -34,7 +34,7 @@ export default function Calc() {
         />
       </div>
       <div className="field">
-        <span>C</span>
+        <span>D</span>
         <input
           type="number"
           value={c}
