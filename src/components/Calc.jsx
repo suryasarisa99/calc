@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { products } from "../data";
-export default function Calc() {
+export default function Calc({ curr }) {
   const [a, setA] = useState("");
   const [b, setB] = useState("");
   const [c, setC] = useState("");
   const [p, setP] = useState(1);
+
+  useEffect(() => {
+    setP(curr);
+  }, [curr]);
+
   return (
     <div className="calc">
       <div className="field">
@@ -50,7 +55,7 @@ export default function Calc() {
               perc(10, products[p - 1]) * a +
               perc(5, products[p - 1]) * b +
               perc(2, products[p - 1]) * c
-            ).toFixed(2)},\ntotal:${(
+            ).toFixed(2)},\ntotal: ${(
               (perc(10, products[p - 1]) * a +
                 perc(5, products[p - 1]) * b +
                 perc(2, products[p - 1]) * c) *
@@ -61,7 +66,19 @@ export default function Calc() {
       >
         <p>
           <span className="text">Daily</span>
-          <span className="value">
+          <span
+            className="value"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigator.clipboard.writeText(
+                `daily: ${(
+                  perc(10, products[p - 1]) * a +
+                  perc(5, products[p - 1]) * b +
+                  perc(2, products[p - 1]) * c
+                ).toFixed(2)}`
+              );
+            }}
+          >
             {(
               perc(10, products[p - 1]) * a +
               perc(5, products[p - 1]) * b +
@@ -71,7 +88,20 @@ export default function Calc() {
         </p>
         <p>
           <span className="text">Total:</span>
-          <span className="value">
+          <span
+            className="value"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigator.clipboard.writeText(
+                `total: ${(
+                  (perc(10, products[p - 1]) * a +
+                    perc(5, products[p - 1]) * b +
+                    perc(2, products[p - 1]) * c) *
+                  products[0].days
+                ).toFixed(3)}`
+              );
+            }}
+          >
             {(
               (perc(10, products[p - 1]) * a +
                 perc(5, products[p - 1]) * b +

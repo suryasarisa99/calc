@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Table({ head, data, name }) {
+export default function Table({ head, data, name, setCurr }) {
   const vs = ["days", "items", "dailyrate"];
   const md = ["startingbonus", "invitationreward"];
   return (
@@ -29,7 +29,10 @@ export default function Table({ head, data, name }) {
               {Object.entries(prd).map(([key, value], ind) => {
                 return (
                   <p
-                    onClick={() => navigator.clipboard.writeText(value)}
+                    onClick={() => {
+                      setCurr(pInd + 1);
+                      navigator.clipboard.writeText(value);
+                    }}
                     className={
                       "cell " +
                       key +

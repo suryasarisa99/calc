@@ -5,6 +5,7 @@ import { products, vipList, bonusList } from "./data";
 import Calc from "./components/Calc";
 function App() {
   const [show, setShow] = useState(-1);
+  const [curr, setCurr] = useState(1);
   const head = [
     { key: "name", name: "Name" },
     { key: "cost", name: "Cost" },
@@ -29,7 +30,7 @@ function App() {
         />
       ))} */}
 
-      <Table head={head} data={products} />
+      <Table head={head} data={products} setCurr={setCurr} />
       <div className="tables">
         <Table
           head={[
@@ -48,7 +49,7 @@ function App() {
           name="bonus"
           data={bonusList}
         />
-        <Calc />
+        <Calc curr={curr} />
       </div>
     </>
   );
