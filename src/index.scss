@@ -255,3 +255,18 @@ input {
     }
   }
 }
+
+@media (max-width: 600px) {
+  .totalRate,
+  .head-item.TR {
+    display: none;
+  }
+  .dailyRate,
+  .head-item.DR {
+    display: none;
+  }
+  .items,
+  .head-item.I {
+    display: none;
+  }
+}

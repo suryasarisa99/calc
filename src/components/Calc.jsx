@@ -18,7 +18,11 @@ export default function Calc({ curr }) {
           type="number"
           className="small"
           value={p}
-          onChange={(e) => setP(+e.target.value.at(-1) || 1)}
+          onChange={(e) => {
+            let value =
+              +e.target.value.at(-1) >= 7 ? 1 : +e.target.value.at(-1) || 1;
+            setP(value);
+          }}
         />
       </div>
       <div className="field">

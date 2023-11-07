@@ -10,6 +10,8 @@ export default function Table({ head, data, name, setCurr }) {
           <p
             className={
               "head-item " +
+              h.key +
+              " " +
               (vs.includes(h.key.toLowerCase())
                 ? "vs"
                 : md.includes(h.key.toLocaleLowerCase())
@@ -30,7 +32,7 @@ export default function Table({ head, data, name, setCurr }) {
                 return (
                   <p
                     onClick={() => {
-                      setCurr(pInd + 1);
+                      if (setCurr) setCurr(pInd + 1);
                       navigator.clipboard.writeText(value);
                     }}
                     className={
