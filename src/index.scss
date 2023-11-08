@@ -12,6 +12,7 @@ body {
 
 .tables {
   display: flex;
+  // flex-wrap: wrap;
   // justify-content: space-around;
   align-items: start;
   gap: 6px;
@@ -91,7 +92,6 @@ input {
     justify-content: start;
     margin-bottom: 3px;
     .head-item {
-      // flex-shrink: 0;
       width: 85px;
       background-color: rgb(128, 60, 0);
       padding: 10px 0px;
@@ -136,7 +136,6 @@ input {
       }
 
       .cell {
-        // flex-shrink: 0;
         width: 85px;
         text-align: center;
         font-size: 18px;
@@ -240,8 +239,9 @@ input {
     border-radius: 4px;
   }
   p {
-    &:first-child {
-      margin-bottom: 8px;
+    margin-bottom: 8px;
+    &:last-child {
+      margin-bottom: 0px;
     }
     font-size: 14px;
     .text {

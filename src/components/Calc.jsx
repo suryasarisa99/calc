@@ -1,10 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { products } from "../data";
 export default function Calc({ curr }) {
   const [a, setA] = useState("");
   const [b, setB] = useState("");
   const [c, setC] = useState("");
   const [p, setP] = useState(1);
+
+  const [daily, setDaily] = useState(0);
+  const [plan, setPlan] = useState(0);
+  const [monthly, setMonthly] = useState(0);
+  const [yearly, setYearly] = useState(0);
+
+  useEffect(() => {
+    const daily = (
+      perc(10, products[p - 1]) * a +
+      perc(5, products[p - 1]) * (a ? a * b : b) +
+      perc(2, products[p - 1]) * (a * b ? a * b * c : c)
+    ).toFixed(2);
+    setDaily(daily);
+    setPlan((daily * products[p - 1].days).toFixed(3));
+    setMonthly((daily * 30).toFixed(3));
+    setYearly((daily * 365).toFixed(3));
+  }, [a, b, c, p]);
 
   useEffect(() => {
     setP(curr);
@@ -54,18 +71,7 @@ export default function Calc({ curr }) {
       <div
         className="result"
         onClick={() => {
-          navigator.clipboard.writeText(
-            `daily: ${(
-              perc(10, products[p - 1]) * a +
-              perc(5, products[p - 1]) * b +
-              perc(2, products[p - 1]) * c
-            ).toFixed(2)},\ntotal: ${(
-              (perc(10, products[p - 1]) * a +
-                perc(5, products[p - 1]) * b +
-                perc(2, products[p - 1]) * c) *
-              products[0].days
-            ).toFixed(3)}`
-          );
+          navigator.clipboard.writeText(`daily: ${daily},\ntotal: ${plan}`);
         }}
       >
         <p>
@@ -74,20 +80,10 @@ export default function Calc({ curr }) {
             className="value"
             onClick={(e) => {
               e.stopPropagation();
-              navigator.clipboard.writeText(
-                `daily: ${(
-                  perc(10, products[p - 1]) * a +
-                  perc(5, products[p - 1]) * b +
-                  perc(2, products[p - 1]) * c
-                ).toFixed(2)}`
-              );
+              navigator.clipboard.writeText(`daily: ${daily}`);
             }}
           >
-            {(
-              perc(10, products[p - 1]) * a +
-              perc(5, products[p - 1]) * b +
-              perc(2, products[p - 1]) * c
-            ).toFixed(2)}
+            {daily} +{/* income: {daily + products[p - 1].dailyIncome} */}
           </span>
         </p>
         <p>
@@ -96,22 +92,34 @@ export default function Calc({ curr }) {
             className="value"
             onClick={(e) => {
               e.stopPropagation();
-              navigator.clipboard.writeText(
-                `total: ${(
-                  (perc(10, products[p - 1]) * a +
-                    perc(5, products[p - 1]) * b +
-                    perc(2, products[p - 1]) * c) *
-                  products[0].days
-                ).toFixed(3)}`
-              );
+              navigator.clipboard.writeText(`total: ${plan}`);
             }}
           >
-            {(
-              (perc(10, products[p - 1]) * a +
-                perc(5, products[p - 1]) * b +
-                perc(2, products[p - 1]) * c) *
-              products[0].days
-            ).toFixed(3)}
+            {plan}
+          </span>
+        </p>
+        <p>
+          <span className="text">Monthly:</span>
+          <span
+            className="value"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigator.clipboard.writeText(`total: ${monthly}`);
+            }}
+          >
+            {monthly}
+          </span>
+        </p>
+        <p>
+          <span className="text">Yearly:</span>
+          <span
+            className="value"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigator.clipboard.writeText(`total: ${yearly}`);
+            }}
+          >
+            {yearly}
           </span>
         </p>
       </div>
@@ -121,5 +129,5 @@ export default function Calc({ curr }) {
 
 function perc(per, prd) {
   //   const map = { B: 10, C: 5, D: 2 };
-  return ((prd.dailyIncome / 100) * per).toFixed(1);
+  return ((prd.dailyIncome / 100) * per).toFixed(3);
 }
