@@ -104,7 +104,7 @@ export default function Calc({ curr }) {
             className="value"
             onClick={(e) => {
               e.stopPropagation();
-              navigator.clipboard.writeText(`total: ${monthly}`);
+              navigator.clipboard.writeText(`MOnthly: ${monthly}`);
             }}
           >
             {monthly}
@@ -116,7 +116,7 @@ export default function Calc({ curr }) {
             className="value"
             onClick={(e) => {
               e.stopPropagation();
-              navigator.clipboard.writeText(`total: ${yearly}`);
+              navigator.clipboard.writeText(`Yearly: ${yearly}`);
             }}
           >
             {yearly}
