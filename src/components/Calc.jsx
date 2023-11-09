@@ -12,15 +12,15 @@ export default function Calc({ curr }) {
   const [yearly, setYearly] = useState(0);
 
   useEffect(() => {
-    const daily = (
+    let d = (
       perc(10, products[p - 1]) * a +
       perc(5, products[p - 1]) * (a ? a * b : b) +
       perc(2, products[p - 1]) * (a * b ? a * b * c : c)
     ).toFixed(2);
     setDaily(daily);
-    setPlan((daily * products[p - 1].days).toFixed(3));
-    setMonthly((daily * 30).toFixed(3));
-    setYearly((daily * 365).toFixed(3));
+    setPlan((d * products[p - 1].days.toFixed(0)).toFixed(3));
+    setMonthly((d * 30).toFixed(3));
+    setYearly((d * 365).toFixed(3));
   }, [a, b, c, p]);
 
   useEffect(() => {
@@ -104,7 +104,7 @@ export default function Calc({ curr }) {
             className="value"
             onClick={(e) => {
               e.stopPropagation();
-              navigator.clipboard.writeText(`MOnthly: ${monthly}`);
+              navigator.clipboard.writeText(`Monthly: ${monthly}`);
             }}
           >
             {monthly}
